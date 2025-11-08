@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Easy Selection Sort</title>
+</head>
+<body>
+  <h2>Selection Sort Example (Easy Version)</h2>
+  <button onclick="sortArray()">Run Code</button>
+
+  <script>
+    function sortArray() {
+      let arr = [12, 3, 55, 6, 7, 1, 33];
+      console.log("Initial Array:", arr);
+
+      // outer loop: ہر element پر جانا
+      for (let i = 0; i < arr.length - 1; i++) {
+        let minIndex = i; // سب سے چھوٹے element کی position
+
+        // inner loop: باقی array میں سب سے چھوٹا element ڈھونڈنا
+        for (let j = i + 1; j < arr.length; j++) {
+          if (arr[j] < arr[minIndex]) {
+            minIndex = j; // اگر کوئی چھوٹا element ملا تو index update کرو
+          }
+        }
+
+        // swap: سب سے چھوٹے element کو current position پر لے آؤ
+        let temp = arr[i];
+        arr[i] = arr[minIndex];
+        arr[minIndex] = temp;
+
+        console.log(`Step ${i + 1}:`, arr); // ہر step کا array دکھاؤ
+      }
+
+      console.log("Sorted Array:", arr);
+    }
+  </script>
+</body>
+</html>
