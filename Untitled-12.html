@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Easy Merge Sort</title>
+</head>
+<body>
+  <h2>Easy Merge Sort</h2>
+  <button onclick="runMergeSort()">Run Merge Sort</button>
+
+  <script>
+    // Merge two sorted arrays
+    function merge(left, right) {
+      let result = [];
+      let i = 0, j = 0;
+
+      while (i < left.length && j < right.length) {
+        if (left[i] < right[j]) {
+          result.push(left[i]);
+          i++;
+        } else {
+          result.push(right[j]);
+          j++;
+        }
+      }
+
+      // Add remaining elements
+      return result.concat(left.slice(i)).concat(right.slice(j));
+    }
+
+    // Merge Sort function
+    function mergeSort(arr) {
+      if (arr.length <= 1) return arr; // Already sorted
+
+      const mid = Math.floor(arr.length / 2);
+      const left = arr.slice(0, mid);
+      const right = arr.slice(mid);
+
+      return merge(mergeSort(left), mergeSort(right));
+    }
+
+    function runMergeSort() {
+      let arr = [12, 3, 55, 6, 7, 1, 33];
+      console.log("Original Array:", arr);
+
+      let sortedArray = mergeSort(arr);
+      console.log("Sorted Array:", sortedArray);
+    }
+  </script>
+</body>
+</html>
