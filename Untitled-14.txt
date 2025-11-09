@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bucket Sort Example</title>
+</head>
+<body>
+  <h2>Bucket Sort Example</h2>
+  <button onclick="runBucketSort()">Run Bucket Sort</button>
+
+  <script>
+    function bucketSort(arr, bucketSize = 5) {
+      if (arr.length <= 1) return arr;
+
+      // 1. Find min and max
+      let minValue = Math.min(...arr);
+      let maxValue = Math.max(...arr);
+
+      // 2. Initialize buckets
+      let bucketCount = Math.floor((maxValue - minValue) / bucketSize) + 1;
+      let buckets = Array.from({ length: bucketCount }, () => []);
+
+      // 3. Distribute elements into buckets
+      arr.forEach(num => {
+        let idx = Math.floor((num - minValue) / bucketSize);
+        buckets[idx].push(num);
+      });
+
+      // 4. Sort each bucket and concatenate
+      let sortedArray = [];
+      buckets.forEach(bucket => {
+        sortedArray.push(...bucket.sort((a, b) => a - b));
+      });
+
+      return sortedArray;
+    }
+
+    function runBucketSort() {
+      let arr = [29, 25, 3, 49, 9, 37, 21, 43];
+      console.log("Original Array:", arr);
+      let sorted = bucketSort(arr);
+      console.log("Sorted Array:", sorted);
+    }
+  </script>
+</body>
+</html>
