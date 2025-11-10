@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Linked List Example</title>
+</head>
+<body>
+
+
+  <script>
+function node(value) {
+ return{
+     data:value,
+    next:null
+ }
+}
+let head=node(45)
+head.next=node(35)
+head.next.next=node(25)
+head.next.next.next=node(5)
+
+function print(head) {
+    let current=head
+    while(current !==null){
+       console.log(current.data)
+current=current.next
+    }
+   
+}
+function addNode(head,value) {
+  let newNode=node(value)
+  let current=head
+  while(current.next !==null){
+    current=current.next
+  }
+  current.next=newNode
+}
+
+addNode(head, 111)
+print(head);
+
+  </script>
+</body>
+</html>
