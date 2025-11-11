@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Double Linked List Example</title>
+</head>
+<body>
+
+<script>
+  // Node constructor (Double Linked List)
+  function node(value) {
+    return { data: value, next: null, prev: null };
+  }
+
+  // Initial list
+  let head = node(10);
+  let second = node(11);
+  let third = node(13);
+  let fourth = node(14);
+
+  head.next = second;
+  second.prev = head;
+
+  second.next = third;
+  third.prev = second;
+
+  third.next = fourth;
+  fourth.prev = third;
+
+  // Print list forward
+  function print(head) {
+    let current = head;
+    console.log("---- LIST FORWARD ----");
+    while (current !== null) {
+      console.log(current.data);
+      current = current.next;
+    }
+    console.log("----------------------");
+  }
+
+  // Add node at end
+  function addNode(head, value) {
+    let newNode = node(value);
+    if (!head) return newNode;
+    let current = head;
+    while (current.next) {
+      current = current.next;
+    }
+    current.next = newNode;
+    newNode.prev = current;
+    return head;
+  }
+
+  // Delete node
+  function deleteNode(head, value) {
+    if (!head) return head;
+    if (head.data === value) {
+      head = head.next;
+      if (head) head.prev = null;
+      return head;
+    }
+    let current = head;
+    while (current && current.data !== value) {
+      current = current.next;
+    }
+    if (current) {
+      if (current.prev) current.prev.next = current.next;
+      if (current.next) current.next.prev = current.prev;
+    }
+    return head;
+  }
+
+  // Reverse DLL
+  function reverseList(head) {
+    let current = head;
+    let temp = null;
+    while (current) {
+      temp = current.prev;
+      current.prev = current.next;
+      current.next = temp;
+      head = current; // update head at last node
+      current = current.prev;
+    }
+    return head;
+  }
+
+  // ---------- Demo ----------
+  console.log("Original DLL:");
+  print(head);
+
+  head = addNode(head, 101);
+  head = addNode(head, 102);
+  head = addNode(head, 103);
+  console.log("After adding 101,102,103:");
+  print(head);
+
+  head = deleteNode(head, 11);
+  console.log("After deleting 11:");
+  print(head);
+
+  head = reverseList(head);
+  console.log("After reversing DLL:");
+  print(head);
+
+</script>
+
+</body>
+</html>
