@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Circular Single Linked List</title>
+</head>
+<body>
+
+<script>
+  function node(value) {
+    return { data: value, next: null };
+  }
+
+  // Create list
+  let head = node(10);
+  let second = node(11);
+  let third = node(13);
+  let fourth = node(14);
+
+  head.next = second;
+  second.next = third;
+  third.next = fourth;
+  fourth.next = head; // circular link
+
+  // Print CSLL
+  function print(head) {
+    if (!head) return;
+    let current = head;
+    console.log("---- Circular List ----");
+    do {
+      console.log(current.data);
+      current = current.next;
+    } while (current !== head);
+    console.log("----------------------");
+  }
+
+  // Add node at end
+  function addNode(head, value) {
+    let newNode = node(value);
+    if (!head) {
+      newNode.next = newNode;
+      return newNode;
+    }
+    let current = head;
+    while (current.next !== head) {
+      current = current.next;
+    }
+    current.next = newNode;
+    newNode.next = head;
+    return head;
+  }
+
+  // Delete node
+  function deleteNode(head, value) {
+    if (!head) return head;
+
+    let current = head;
+    let prev = null;
+
+    // Check if head needs to be deleted
+    if (head.data === value) {
+      // Single node case
+      if (head.next === head) return null;
+      // find last node
+      let tail = head;
+      while (tail.next !== head) tail = tail.next;
+      head = head.next;
+      tail.next = head;
+      return head;
+    }
+
+    do {
+      prev = current;
+      current = current.next;
+      if (current.data === value) {
+        prev.next = current.next;
+        break;
+      }
+    } while (current !== head);
+
+    return head;
+  }
+
+  // ---------- Demo ----------
+  console.log("Original CSLL:");
+  print(head);
+
+  head = addNode(head, 101);
+  head = addNode(head, 102);
+  console.log("After adding 101,102:");
+  print(head);
+
+  head = deleteNode(head, 11);
+  console.log("After deleting 11:");
+  print(head);
+
+</script>
+
+</body>
+</html>
