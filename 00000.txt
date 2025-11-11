@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Linked List Example - Complete</title>
+</head>
+<body>
+
+<script>
+  function node(value) {
+    return{
+      data:value,
+      next:null,
+      prev:null
+    }
+  }
+let head=node(1)
+let second=node(2)
+let third=node(3)
+
+head.next=second
+second.prev=head
+
+second.next=third
+third.prev=second
+  function print(head) {
+  let current=head
+  while (current !==null) {
+    console.log(current.data)
+    current=current.next
+  }
+  let tail=head
+    while (tail.next) 
+      tail=tail.next
+    while (tail) {
+      console.log(tail.data)
+        tail=tail.prev
+      }
+  }
+
+  
+  print(head)
+</script>
+
+</body>
+</html>
