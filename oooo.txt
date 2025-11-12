@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Doubly Linked List Example</title>
+</head>
+<body>
+
+<script>
+function node(value) {
+  return {
+    data: value,
+    next: null,
+    prev: null
+  }
+}
+
+let head = node(10)
+let second = node(20)
+let third = node(30)
+
+head.next = second
+second.prev = head
+second.next = third
+third.prev = second
+
+function print(head) {
+  let current = head
+  console.log("Forward:")
+  while (current !== null) {
+    console.log(current.data)
+    current = current.next
+  }
+}
+function add(head,value) {
+  let newNode=node(value)
+ 
+  if(head==null){
+  head=newNode
+return head
+}
+let current=head
+while (current.next !==null) {
+  current=current.next
+}
+  newNode.next = head;
+  head.prev = newNode;
+  head = newNode;
+return head
+}
+
+function search(head,value) {
+  let current=head
+  while (current !==null) {
+    if(current.data===value){
+      console.log(value,"mila")
+      return true
+    }
+    current=current.next
+  }
+  console.log(value,"nahi mila")
+  return false
+}
+search(head,10)
+ head=add(head,101)
+print(head)
+</script>
+
+</body>
+</html>
