@@ -1,31 +1,26 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ur">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Run on Button Click</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stack Example</title>
 </head>
 <body>
-  <h2>Array Console Example</h2>
 
-  <button onclick="showArray()">Run Code</button>
-  <h1>Check Your Console</h1>
+    <h1>Stack Operations in JavaScript</h1>
+    <p id="result"></p>
 
-  <script>
-    function showArray() {
-      const arry = [5, 2, 4, 1, 3, 7];
-      for (let i = 0; i < arry.length-1; i++) {
-  let key=arry[i]
-  let j=i-1
-  while( j >= 0 && arry[j]>key){
-  arry[j + 1] = arry[j];
-          j = j - 1;
-  }
-     arry[j + 1] = key;
-      }
-       console.log(arry)
-    }
-   
-  </script>
+    <script>
+let stack=[]
+stack.push(1)
+stack.push(2)
+stack.push(3)
+stack.push(4)
+let withdraw=stack.pop()
+
+console.log(withdraw)
+console.log(stack)
+    </script>
+
 </body>
 </html>
