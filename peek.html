@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="ur">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stack Example</title>
+</head>
+<body>
+
+    <h1>Stack Operations in JavaScript</h1>
+    <p id="result"></p>
+
+    <script>
+let stack=[]
+stack.push(1)
+stack.push(2)
+stack.push(3)
+stack.push(4)
+function peek() {
+return stack[stack.length-1]
+}
+
+function peeke(index){
+    return stack[index]
+}
+
+
+
+function lengt(){
+ return   stack.length
+}
+console.log(stack)
+console.log(peek())
+console.log("peek element",peeke(1))
+console.log("Total Length",lengt())
+    </script>
+
+</body>
+</html>
